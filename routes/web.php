@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(\App\Http\Middleware\IsAdminMiddleware::class);
+
+
+Route::get('/user/profile', [\App\Http\Controllers\PostController::class, 'index'])->name('user.profile');
