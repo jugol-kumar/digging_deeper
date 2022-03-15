@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if(Session::has('message'))
-                {{ Session::get('message') }}
+                <h3 class="alert alert-success">{{ Session::get('message') }}</h3>
             @endif
 
             <h2>Welcome Admin ~~ {{ Auth::user()->name }} ~~</h2>
@@ -26,12 +26,19 @@
                     </nav>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <form class="p-5">
+                            <form method="post" action="{{ route('storepost') }}" class="p-5" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control mb-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
+                                    <input type="text" name="title" class="form-control mb-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
+                                    @error('title')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <textarea rows="10" name="description" class="form-control" placeholder="Description"></textarea>
+                                    @error('description')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="status" id="exampleCheck1">
@@ -52,24 +59,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    @foreach($posts as $post)
+                                        <tr>
+                                            <th scope="row">{{ $post->id }}</th>
+                                            <td>{{ $post->title }}</td>
+                                            <td><span class="{{ $post->user->role->slug == 'admin' ? 'text-danger' : 'text-success' }} ">{{ $post->user->role->slug }}</span></td>
+                                            <td>
+                                                <a href=""><i class="fa fa-pencil"></i></a>
+                                                <a href=""><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

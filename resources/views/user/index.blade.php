@@ -19,9 +19,10 @@
                     </nav>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <form class="p-5">
+                            <form class="p-5" method="post" action="{{ route('user.post') }}">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control mb-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
+                                    <input type="text" name="title" class="form-control mb-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title">
                                 </div>
                                 <div class="form-group">
                                     <textarea rows="10" name="description" class="form-control" placeholder="Description"></textarea>

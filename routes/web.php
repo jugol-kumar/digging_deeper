@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/user/profile', [\App\Http\Controllers\PostController::class, 'index'])->name('user.profile');
+
+
+Route::post('/save-post',[\App\Http\Controllers\HomeController::class,'savePost'])->name('storepost');
+
+Route::post('/save-user-post', function (Request $request){
+    return $request;
+})->name('user.post');
+
