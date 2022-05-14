@@ -56,9 +56,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}">
-                                        Notification 1
-                                    </a>
+
+                                        @foreach($notifications as $notify)
+                                        <a class="dropdown-item" href="">
+                                            {{ $notify }}
+                                            <br>
+                                            {{ $notify->created_at->diffForHumans() }}
+                                        </a>
+                                        @endforeach
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -97,5 +102,73 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+{{--    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>--}}
+
+{{--    <script>--}}
+
+{{--        const firebaseConfig = {--}}
+{{--            apiKey              : "AIzaSyCp0mqhw22lDlehJcVCl9UN-I_3xVVfWHM",--}}
+{{--            authDomain          : "ecomb1.firebaseapp.com",--}}
+{{--            projectId           : "ecomb1",--}}
+{{--            storageBucket       : "ecomb1.appspot.com",--}}
+{{--            messagingSenderId   : "777578552114",--}}
+{{--            appId               : "1:777578552114:web:ab28772d0e24982c44d52b",--}}
+{{--            measurementId       : "G-H4KDQZ5R8H"--}}
+{{--        };--}}
+
+{{--        firebase.initializeApp(firebaseConfig);--}}
+{{--    </script>--}}
+
+{{--    <script type="text/javascript">--}}
+
+{{--        window.onload=function () {--}}
+{{--            render();--}}
+{{--        };--}}
+
+{{--        function render() {--}}
+{{--            window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container');--}}
+{{--            recaptchaVerifier.render();--}}
+{{--        }--}}
+
+{{--        function phoneSendAuth() {--}}
+
+{{--            var number = $("#number").val();--}}
+
+{{--            firebase.auth().signInWithPhoneNumber(number,window.recaptchaVerifier).then(function (confirmationResult) {--}}
+
+{{--                window.confirmationResult=confirmationResult;--}}
+{{--                coderesult=confirmationResult;--}}
+{{--                console.log(coderesult);--}}
+
+
+{{--                $("#sentSuccess").text("Message Sent Successfully.");--}}
+{{--                $("#sentSuccess").show();--}}
+
+{{--            }).catch(function (error) {--}}
+{{--                $("#error").text(error.message);--}}
+{{--                $("#error").show();--}}
+{{--            });--}}
+
+{{--        }--}}
+
+{{--        function codeverify() {--}}
+{{--            var code = $("#verificationCode").val();--}}
+
+{{--            coderesult.confirm(code).then(function (result) {--}}
+{{--                var user=result.user;--}}
+{{--                console.log(user);--}}
+
+{{--                $("#successRegsiter").text("you are register Successfully.");--}}
+{{--                $("#successRegsiter").show();--}}
+
+{{--            }).catch(function (error) {--}}
+{{--                $("#error").text(error.message);--}}
+{{--                $("#error").show();--}}
+{{--            });--}}
+{{--        }--}}
+{{--    </script>--}}
+
+    @stack('js')
 </body>
 </html>

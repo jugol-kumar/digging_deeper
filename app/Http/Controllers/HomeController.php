@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -28,8 +29,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user', 'user.role:id,slug')->get();
-        return view('home', compact('posts'));
+        $posts = Post::with('user', 'user.role:id,slug')
+                ->get();
+        $notifications = Auth::user()->unreadNotifications;
+
+        return view('home', compact('posts', 'notifications'));
     }
 
     public function savePost(PostRequest $request){

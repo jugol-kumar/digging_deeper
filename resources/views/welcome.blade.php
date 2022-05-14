@@ -18,10 +18,33 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            .color-red{
+                color: red;
+            }
+            .bg-red{
+                color: #0a53be;
+            }
         </style>
     </head>
     <body class="antialiased">
-        <h1>This is my Git Test Branch</h1>
+
+    @php
+        $isActive = request()->is("/dd");
+        $hasError = false;
+    @endphp
+
+    <span class="p-4 text-gray-500 color-red"></span>
+
+    <span @class([
+    'p-4',
+    'color-red' => $isActive,
+    'text-gray-500' => ! $isActive,
+    'bg-red' => $hasError,
+    ])>
+    This is my Git Test Branch
+    </span>
+
+{{--        <h1 class="color-red"></h1>--}}
 
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
@@ -29,6 +52,7 @@
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                     @else
+                        <a href="{{ route('firebase.numberverify') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mr-2">Firebase Number Verification</a>
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
                         @if (Route::has('register'))
