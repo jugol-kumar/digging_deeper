@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\PostSaved;
 use App\Events\UserRegistrationEvent;
+use App\Listeners\PostCreatedListner;
 use App\Listeners\SendNewUserNotification;
 use App\Listeners\SendUserPostNotification;
 use App\Listeners\UserRegistrationNotificationListner;
@@ -27,6 +29,10 @@ class EventServiceProvider extends ServiceProvider
 
         UserRegistrationEvent::class => [
             UserRegistrationNotificationListner::class
+        ],
+
+        PostSaved::class => [
+            PostCreatedListner::class,
         ]
 
 

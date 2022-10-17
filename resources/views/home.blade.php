@@ -15,6 +15,10 @@
 
                 <div class="card-body">
                     <nav>
+
+                        <li class="nav-item">
+                            <a class="nav-link"  href="{{ route('infinityloop') }}">Infinity Loops</a>
+                        </li>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Create Post</a>

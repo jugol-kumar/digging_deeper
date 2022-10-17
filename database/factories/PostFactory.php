@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use function Symfony\Component\Translation\t;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\=>
  */
 class PostFactory extends Factory
 {
@@ -17,7 +19,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->title,
+            'slug' => $this->faker->slug,
+            'user_id' => User::first(),
         ];
     }
 }

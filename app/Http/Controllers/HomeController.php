@@ -29,20 +29,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user', 'user.role:id,slug')
-                ->get();
+        $posts = cache('posts');
+
+//        $posts = Post::with('user', 'user.role:id,slug')
+//                ->get();
         $notifications = Auth::user()->unreadNotifications;
 
         return view('home', compact('posts', 'notifications'));
     }
 
     public function savePost(PostRequest $request){
-
         $data = $request->validated();
         $data['user_id'] = Auth::id();
         $data['slug'] = Str::slug($request['title']);
         $data['status' ] = filled($request['status']);
         Post::create($data);
+
         return back()->with('message', "Post Save Successfully Done");
     }
 }

@@ -77,6 +77,18 @@ class PostController extends Controller
         //
     }
 
+
+    public function infinityLoad(Request $request){
+        $posts = Post::paginate(15);
+        if ($request->ajax()){
+            $view = view('infinity_loop.load_data', compact('posts'))->render();
+            return response()->json(['view' => $view]);
+        }
+        return view("infinity_loop.posts", compact('posts'));
+    }
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
