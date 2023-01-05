@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Post extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     protected $guarded = ['id'];
 

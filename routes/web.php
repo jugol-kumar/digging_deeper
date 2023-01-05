@@ -44,6 +44,10 @@ Route::post('/loadmore/data', [\App\Http\Controllers\PostController::class, 'loa
 Route::get("/infinity-scrolling", [\App\Http\Controllers\PostController::class, 'infinityLoad'])->name('infinityloop');
 
 
+Route::get('/get-all-user', [\App\Http\Controllers\RepositoryUserController::class, 'index'])->name('user.index');
+Route::get('/get-all-user/{id}', [\App\Http\Controllers\RepositoryUserController::class, 'showUser'])->name('user.index');
+Route::get('/get-all-user/{id}/delete', [\App\Http\Controllers\RepositoryUserController::class, 'delete'])->name('user.index');
+
 
 Route::get('/array', function (){
 
@@ -142,4 +146,34 @@ Route::get('user-notification', function (){
     foreach ($user->notifications as $notification) {
         dump( $notification->data );
     }
+});
+
+
+Route::get('/vue-chat', function (){
+    return view('VuejsApp');
+});
+
+
+Route::get('/brotcasting', function (){
+    return view('VuejsApp');
+})->name('brotcasting');
+
+
+
+
+
+// tasks
+
+Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'tasks'])->name('tasks');
+Route::get('/api/tasks', [\App\Http\Controllers\TaskController::class, 'getTasks']);
+Route::view('/b-show', 'task.b_show');
+
+Route::post('/tasks-create', [\App\Http\Controllers\TaskController::class, 'create'])->name('task.save');
+
+
+Route::get('/bbbb', function (){
+    \App\Events\TaskEvent::dispatch();
+    event(new \App\Events\TaskEvent());
+
+    return "ok";
 });

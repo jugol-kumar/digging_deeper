@@ -36,8 +36,6 @@ class PostCreatedListner
         Notification::send();
 
 
-
-
         info('successfully cached');
     }
 }

@@ -17,14 +17,19 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
-        "resolve-url-loader": "^5.0.0",
+        "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.11",
-        "sass-loader": "^11.0.1"
+        "sass-loader": "^11.0.1",
+        "vue-loader": "^17.0.0",
+        "vue-template-compiler": "^2.7.14"
     },
     "dependencies": {
         "firebase": "^9.6.10",
         "jquery": "^3.6.0",
+        "laravel-echo": "^1.14.2",
         "popper": "^1.0.1",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "pusher-js": "^8.0.0",
+        "vue": "^3.2.45"
     }
 }

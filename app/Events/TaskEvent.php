@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Post;
+use App\Models\Task;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -12,21 +12,19 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class PostSaved implements ShouldBroadcast
+class TaskEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      *
-     * @param Post $post
+     * @param Task $task
      */
-
-    public $post;
-
-    public function __construct(Post $post)
+    public $task;
+    public function __construct(Task $task)
     {
-        $this->post = $post;
+        $this->task = $task;
     }
 
     /**
@@ -36,6 +34,6 @@ class PostSaved implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('tasks');
     }
 }

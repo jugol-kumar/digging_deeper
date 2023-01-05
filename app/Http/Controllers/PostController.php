@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostSaved;
 use App\Models\Post;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\User;
@@ -61,8 +62,17 @@ class PostController extends Controller
             'description' => $request->description,
             'status' => filled($request->status)
         ]);
-        $user = User::where('role_id', 1)->first();
-        Notification::send($user, new UserPostNotification($post));
+
+//
+//
+        event(new PostSaved($post));
+
+
+
+
+//
+//        $user = User::where('role_id', 1)->first();
+//        Notification::send($user, new UserPostNotification($post));
         return back()->with('message', "Post Create Successfully Done!!!");
     }
 
