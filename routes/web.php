@@ -4,6 +4,7 @@ use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -176,4 +177,16 @@ Route::get('/bbbb', function (){
     event(new \App\Events\TaskEvent());
 
     return "ok";
+});
+
+
+Route::get('/carbon-date', function (){
+
+    return \App\Http\Controllers\TaskController::index();
+
+
+    $date = \Carbon\Carbon::parse("2023-01-8");
+
+    return $date->isToday() ? "today" : "not true";
+
 });

@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-</template>
+</template>php
 
 <script>
     export default {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\TaskEvent;
 use App\Models\Task;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -26,4 +27,14 @@ class TaskController extends Controller
 
         event(new TaskEvent($task));
     }
+
+
+    public static function index()
+    {
+
+        $schedule = new Schedule();
+        return dd($schedule->dueEvents(app()));
+    }
+
+
 }
