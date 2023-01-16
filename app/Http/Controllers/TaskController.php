@@ -7,7 +7,7 @@ use App\Models\Task;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class  TaskController
 {
 
     public function tasks(){
@@ -31,7 +31,6 @@ class TaskController extends Controller
 
     public static function index()
     {
-
         $schedule = new Schedule();
         return dd($schedule->dueEvents(app()));
     }

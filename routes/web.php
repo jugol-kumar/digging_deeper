@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\FirebaseController;
+use App\Http\Controllers\RedisController;
 use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -181,12 +182,18 @@ Route::get('/bbbb', function (){
 
 
 Route::get('/carbon-date', function (){
-
     return \App\Http\Controllers\TaskController::index();
-
-
     $date = \Carbon\Carbon::parse("2023-01-8");
-
     return $date->isToday() ? "today" : "not true";
-
 });
+
+
+
+Route::controller(RedisController::class)->group(function(){
+    Route::get('/redis/show/{id}', 'showPost');
+    Route::get('/redis/index', 'index');
+    Route::get('/redis/get-all', 'getAll');
+});
+
+
+Route::get('/export-word-file', [\App\Http\Controllers\ExportWordFile::class, 'generateDocx']);
