@@ -18,15 +18,45 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            .color-red{
+                color: red;
+            }
+            .bg-red{
+                color: #0a53be;
+            }
         </style>
     </head>
     <body class="antialiased">
+
+    @php
+        $isActive = request()->is("/dd");
+        $hasError = false;
+    @endphp
+
+    <span class="p-4 text-gray-500 color-red"></span>
+
+    <span @class([
+    'p-4',
+    'color-red' => $isActive,
+    'text-gray-500' => ! $isActive,
+    'bg-red' => $hasError,
+    ])>
+    This is my Git Test Branch
+    </span>
+
+{{--        <h1 class="color-red"></h1>--}}
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                     @else
+                        <a href="{{ route('business.setting') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mr-2">Business Settings</a>
+                        <a href="{{ route('brotcasting') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mr-2">Brotcasting</a>
+                        <a href="{{ route('tasks') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mr-2">Tasks</a>
+
+                    <a href="{{ route('firebase.numberverify') }}" class="text-sm text-gray-700 dark:text-gray-500 underline mr-2">Firebase Number Verification</a>
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
                         @if (Route::has('register'))

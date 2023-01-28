@@ -17,6 +17,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+
+
+
     public const HOME = '/home';
 
     /**
@@ -35,6 +38,10 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            Route::middleware(['web', 'auth'])
+                ->prefix('chat')
+                ->group(base_path('routes/chat.php'));
         });
     }
 
