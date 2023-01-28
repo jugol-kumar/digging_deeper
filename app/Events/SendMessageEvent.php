@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Task;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -10,21 +10,24 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
-class TaskEvent implements ShouldBroadcast
+class SendMessageEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      *
-     * @param Task $task
+     * @return void
      */
-    public $task;
-    public function __construct(Task $task)
+
+    public $message;
+    public $user;
+
+    public function __construct($message, User $user)
     {
-        $this->task = $task;
+        $this->message = $message;
+        $this->user = $user;
     }
 
     /**
@@ -32,8 +35,9 @@ class TaskEvent implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn(): Channel|array
+    public function broadcastOn()
     {
-        return new Channel('tasks');
+//        return new Channel('send-message');
+        return new PrivateChannel('send-message');
     }
 }

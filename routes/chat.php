@@ -1,7 +1,10 @@
 <?php
 
 
+use App\Events\SendMessageEvent;
 use App\Http\Controllers\Chat\ChatController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,3 +30,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [ChatController::class, 'index'])->name('index');
+
+Route::get('/chats', function (){
+    //
+});
+
+Route::post('/chats', function (){
+    $user = User::findOrFail(Auth::id());
+   $message = request('message');
+   event(
+       (new SendMessageEvent($message, $user))->dontBroadcastToCurrentUser()
+   );
+//   SendMessageEvent::dispatch($message);
+});

@@ -6,11 +6,12 @@ import example from './components/ExampleComponent'
 import task from './Task'
 import chat from './chat/Main'
 
-let app = createApp({
-    components:{example, task, chat}
-}).mount('#chatApp')
+import agora from './chat/agora/Main'
 
-
-createApp({
-    components: {chat}
-}).mount("#chatting")
+// let app = createApp({
+//     components:{example, task}
+// }).mount('#app')
+//
+//
+createApp(chat).mount('#chatApp')
+// createApp(agora).mount('#agora')
