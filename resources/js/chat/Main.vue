@@ -1,13 +1,24 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <h2>Active Users</h2>
+                            <span class="badge badge-primary bg-success" @click="chats.increments">{{ chats.count }} {{ chats.getRemaning }}</span>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item" v-for="persitipens in partisipents" v-text="persitipens.name"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-6 col-md-10 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-<!--                        <h1>Hello Mr {{ name }}</h1>-->
                     </div>
-                    <div class="card-body">
-
+                    <div class="card-body card-body-overflow">
                         <span v-for="item in messages">
                             <div class="d-flex chat-item align-items-center flex-row-reverse mb-2" v-if="item.is_me">
                                 <img src="../../../public/sundor.jpg" alt="" class="rounded-circle" :title="item.name">
@@ -25,8 +36,8 @@
                             </div>
                         </span>
 
-                        <span v-text="typing_msg"></span>
-                        <img src="../../../public/images/typing.gif" v-show="is_typing" alt="" width="50">
+                        <span v-if="activePeer" v-text="activePeer.name+' is Typhing.'"></span>
+                        <img src="../../../public/images/typing.gif" v-show="activePeer" alt="" width="50">
                     </div>
                     <div class="card-footer footer-design d-flex align-items-center">
                         <input type="text" v-model="msg" placeholder="Aa" class="input-text" @input="typing"  @keyup.enter="send">
@@ -44,14 +55,18 @@
 import {watch, ref, onMounted} from "vue"
 import MyMessage from "./MyMessage";
 import UserMessage from "./UserMessage";
+import {useMessage} from "../composable/useMessage";
+import {useChats} from "../stores/ChatStore";
+let chats = useChats()
 
     let msg        = ref('');
     let messages   = ref([]);
-    let is_typing  = ref(false);
-    let typing_msg = ref('');
+    // let is_typing  = ref(false);
+    // let typing_msg = ref('');
+    let partisipents = ref([]);
 
-
-    console.log(messages.value)
+    let activePeer = ref(false);
+    let typhingTimer = ref(false);
 
     let send = ()=>{
         if (msg.value === ""){
@@ -76,31 +91,52 @@ import UserMessage from "./UserMessage";
                 "message" : res.message,
                 "is_me" : false
             })
-            typing_msg.value = '';
-            is_typing = false;
+            // typing_msg.value = '';
+            // is_typing = false;
         })
 
-        Echo.private(`send-message`).listenForWhisper('typing', (e) => {
-            if(e.message.length === 1){
-                typing_msg.value = `${e.name} is Typing....`;
-                is_typing = true;
-                new Audio('./audio/typhing.mp3').play()
-            }
-        });
-
-        // Echo.join(`send-message`).here((users) => {
-        //
-        // }).joining((user) => {
-        //
-        // }).leaving((user) => {
-        //
-        // }).error((error) => {
-        //
+        // Echo.private(`send-message`).listenForWhisper('typing', (e) => {
+        //     if(e.message.length === 1){
+        //         typingTimer()
+        //         // typing_msg.value = `${e.name} is Typing....`;
+        //         // is_typing = true;
+        //         new Audio('./audio/typhing.mp3').play()
+        //     }
         // });
 
+        Echo.private(`send-message`).listenForWhisper('typing', typingTimer)
+
+
+        Echo.join(`send-message`).here((users) => {
+            partisipents.value = users;
+        }).joining((user) => {
+            partisipents.value.push(user)
+        }).leaving((user) => {
+            partisipents.value.splice(partisipents.value.indexOf(user), 1)
+        }).error((error) => {
+
+        });
 
 
     })
+
+
+    let typingTimer = (e) =>{
+        activePeer.value = e;
+        if(e.message.length === 1) {
+            new Audio('./audio/typhing.mp3').play()
+        }
+
+        if(typhingTimer)clearTimeout(typhingTimer)
+
+        typhingTimer.value = setTimeout(()=>{
+            console.log("call hrere");
+            activePeer.value = false;
+        }, 3000)
+
+
+    }
+
 
     watch(msg,()=>{
         // Echo.channel('send-message').whisper('typing', {
@@ -114,7 +150,7 @@ import UserMessage from "./UserMessage";
 </script>
 
 <style scoped>
-    .card-body{
+    .card-body-overflow{
         height: calc(100vh - 15rem);
         overflow-y: scroll;
     }
@@ -162,5 +198,13 @@ import UserMessage from "./UserMessage";
     .footer-design .button svg{
         margin-left: -3px;
         transform: rotate(45deg);
+    }
+    .nav li{
+        padding: 10px;
+        cursor: pointer;
+    }
+    .active{
+        background: #e6e6e6;
+        border-left: 5px solid #5eff5e;
     }
 </style>

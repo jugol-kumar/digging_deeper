@@ -28,6 +28,7 @@
     "dependencies": {
         "firebase": "^9.6.10",
         "jquery": "^3.6.0",
+        "pinia": "^2.0.30",
         "popper": "^1.0.1",
         "popper.js": "^1.16.1",
         "vue": "^3.2.45"

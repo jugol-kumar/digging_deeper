@@ -37,7 +37,7 @@ Route::get('/chats', function (){
 
 Route::post('/chats', function (){
     $user = User::findOrFail(Auth::id());
-   $message = request('message');
+    $message = request('message');
    event(
        (new SendMessageEvent($message, $user))->dontBroadcastToCurrentUser()
    );
