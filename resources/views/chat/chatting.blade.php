@@ -91,16 +91,22 @@
             </div>
         </div>
     </nav>
-    <main class="py-4" id="chatApp">
-        <chat :name="{{ auth()->user()->name }}"></chat>
+
+    <main class="py-4" id="chatApp" user="{{ json_encode(Auth::user()) }}">
+        <i data-feather="circle"></i>
+
+        <chat></chat>
     </main>
 </div>
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+<!-- example icon -->
 
-
-
+<script>
+    feather.replace()
+</script>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

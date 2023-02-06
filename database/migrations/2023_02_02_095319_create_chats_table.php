@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('message')->nullable();
             $table->string('attachment')->nullable();
             $table->enum('delete_type', ['unsend', 'for_me', 'show'])->default('show');
+            $table->tinyInteger('is_seen')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

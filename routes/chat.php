@@ -31,15 +31,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ChatController::class, 'index'])->name('index');
 
+Route::get('/users', [ChatController::class, 'users'])->name('users')->middleware('auth');;
+Route::get('/users/{id}', [ChatController::class, 'user'])->name('users')->middleware('auth');;
+Route::post('/chats', [ChatController::class, 'sendMessage'])->name('send');
+
+
 Route::get('/chats', function (){
     //
 });
 
-Route::post('/chats', function (){
-    $user = User::findOrFail(Auth::id());
-    $message = request('message');
-   event(
-       (new SendMessageEvent($message, $user))->dontBroadcastToCurrentUser()
-   );
-//   SendMessageEvent::dispatch($message);
+Route::fallback(function() {
+    return response()->json([
+        'data' => [],
+        'success' => false,
+        'status' => 404,
+        'message' => 'Invalid Route'
+    ]);
 });
