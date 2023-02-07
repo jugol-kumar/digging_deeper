@@ -8,13 +8,13 @@
                             <h2>Active Users</h2>
                             <span class="badge badge-primary bg-success" @click="chats.increments">{{ chats.count }} {{ chats.getRemaning }}</span>
                         </div>
-
                         <ul class="nav flex-column">
                             <li class="nav-item"
-                                :class="active_id === persitipens.id  ? 'active' : '' "
+                                :class="active_id === persitipens.id ? 'active' : '', isOnline(persitipens.id) ? 'online' : 'offline'"
                                 v-for="persitipens in activeUsers"
                                 :key="persitipens.id"
-                                @click="chats.setUserById(persitipens.id)">{{ persitipens.name }} - {{ persitipens.id }}
+                                @click="chats.setUserById(persitipens.id), active_id = persitipens.id">{{ persitipens.name }}
+                                <span class="badge bg-success" style="width: 10px; height: 10px; background: red;"></span>
                             </li>
                         </ul>
                     </div>
@@ -48,13 +48,7 @@
                                 <img src="../../images/circle.svg" v-if="is_sending && index == chats.getUserById.chats.length - 1" class="icon"/>
                                 <img src="../../images/send.svg" v-else-if="index == chats.getUserById.chats.length - 1 &&  !item.is_seen" class="icon"/>
                                 <img :src="`https://i.pravatar.cc/50?u=${chats.getUserById.user.email}`" v-else-if="index == chats.getUserById.chats.length - 1 && item.is_seen" class="seen icon"/>
-
                             </div>
-
-
-
-
-
                             <div class="d-flex chat-item align-items-center mb-2" v-else>
                                 <img :src="`https://i.pravatar.cc/50?u=${item.user.email}`" alt="" class="rounded-circle" :title="item.name">
                                 <div class="d-flex flex-column align-items-start">
@@ -113,6 +107,7 @@
 <script setup>
 import {computed, onMounted, ref, watch} from "vue"
 import {useChats} from "../stores/ChatStore";
+import lodash from 'lodash';
 
 let authData = JSON.parse(document.getElementById('chatApp').getAttribute('user'));
 
@@ -128,6 +123,8 @@ let authData = JSON.parse(document.getElementById('chatApp').getAttribute('user'
     let typhingTimer = ref(false);
     let active_id = ref(null);
     let is_sending = ref(false)
+
+    let joined_users = ref([]);
 
     let send = ()=>{
         if (msg.value === ""){
@@ -180,11 +177,12 @@ let authData = JSON.parse(document.getElementById('chatApp').getAttribute('user'
 
 
         Echo.join(`send-message`).here((users) => {
-            partisipents.value = users;
+            joined_users.value = users;
+            // console.log(users)
         }).joining((user) => {
-            partisipents.value.push(user)
+            joined_users.value.push(user)
         }).leaving((user) => {
-            partisipents.value.splice(partisipents.value.indexOf(user), 1)
+            joined_users.value.splice(partisipents.value.indexOf(user), 1)
         }).error((error) => {
 
         });
@@ -207,13 +205,13 @@ let authData = JSON.parse(document.getElementById('chatApp').getAttribute('user'
        return chats.getAllUsers;
     });
 
+    let isOnline = (userId) =>{
+        let data = lodash.find(joined_users.value, {'id':userId})
+        return data;
+    };
+
     let scrollEnd = () =>{
-        alert('ok')
         let container = document.getElementById('cardScroll');
-
-        // console.log(container);
-
-        // container.scrollTop = container.scrollHeight
     }
 
 
@@ -318,5 +316,21 @@ let authData = JSON.parse(document.getElementById('chatApp').getAttribute('user'
         border-radius: 50px;
         border: 1px solid #dfdfdf;
         padding: 2px;
+    }
+    .online:after{
+        content: "";
+        width: 8px !important;
+        height: 8px;
+        background: #0a53be;
+        position: absolute;
+        border-radius: 50px;
+    }
+    .offline:after{
+        content: "";
+        width: 8px !important;
+        height: 8px;
+        background: #be0a0a;
+        position: absolute;
+        border-radius: 50px;
     }
 </style>

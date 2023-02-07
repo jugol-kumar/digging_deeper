@@ -12,30 +12,21 @@ use Illuminate\Support\Facades\Request;
 class ChatController extends Controller
 {
     public function index(){
+
+
+
         return view('chat.chatting');
     }
 
     public function users(){
-//        if (!Request::ajax()){
-//            abort(404);
-//        };
-
-        $posts = Post::withCount([
-            'upvotes',
-            'upvotes as upvotes_count' => function ($query) {
-                $query->where('upvotes_count', '>', 5);
-            }])
-            ->get();
-
-
-        $users = User::where('id', '!=', Auth::id())
+        if (!Request::ajax()){
+            abort(404);
+        };
+        return response()->json(User::where('id', '!=', Auth::id())
             ->withCount(['chats', 'chats as chat_count' => function($q){
-                $q->where('is_seen', 0);
+                return $q->where('is_seen', 0);
             }])
-            ->get();
-
-        return $users;
-        return response()->json($users, 200);
+            ->get(), 200);
     }
 
 
