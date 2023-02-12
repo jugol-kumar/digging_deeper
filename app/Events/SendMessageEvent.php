@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -24,7 +25,7 @@ class SendMessageEvent implements ShouldBroadcast
     public $message;
     public $user;
 
-    public function __construct($message, User $user)
+    public function __construct(Chat $message, User $user)
     {
         $this->message = $message;
         $this->user = $user;

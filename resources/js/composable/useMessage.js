@@ -8,6 +8,6 @@ export function useMessage(key, val = null){
         localStorage.setItem("simple_data", data);
     }
 
-    return data;
+    return write_message();
 
 }
