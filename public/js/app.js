@@ -23334,7 +23334,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
     if (!this.echo) {
       this.echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-        key: "c5bc4306fdf4745ed09d",
+        key: "",
         cluster: "mt1",
         forceTLS: true,
         broadcaster: 'pusher',
@@ -24051,7 +24051,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "c5bc4306fdf4745ed09d",
+  key: "",
   cluster: "mt1",
   forceTLS: true
 });
@@ -29394,7 +29394,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card-body-overflow[data-v-263e9da2]{\n        height: calc(100vh - 15rem);\n        overflow-y: scroll;\n}\n.chat-item img[data-v-263e9da2]{\n        width: 50px;\n        height:50px;\n        margin-right: 20px;\n}\n.chat-content[data-v-263e9da2]{\n        margin: 0;\n        background: #d7d7d79c;\n        border-radius: 27px;\n        padding: 11px 16px;\n        font-size: 12px;\n        /*max-width: 50%;*/\n        color: #282424;\n}\n.input-text[data-v-263e9da2]{\n        width: 100%;\n        border: none;\n        padding: 9px 18px;\n        border-radius: 50px;\n        font-size: 17px;\n        background: #d7d7d79c;\n}\n.footer-design[data-v-263e9da2]{\n        border-top: none;\n        background: transparent;\n}\n.footer-design .button[data-v-263e9da2]{\n        padding: 11px 13px;\n        border: none;\n        color: #a59e9e;\n        display: flex;\n        border-radius: 50%;\n        align-items: center;\n        justify-content: center;\n        margin-left: 10px;\n        background: transparent;\n}\n.footer-design .button[data-v-263e9da2]:hover{\n        background: #e7e7e7;\n}\n.footer-design .button svg[data-v-263e9da2]{\n        margin-left: -3px;\n        transform: rotate(45deg);\n}\n.nav li[data-v-263e9da2]{\n        padding: 10px;\n        cursor: pointer;\n}\n.nav li a[data-v-263e9da2]{\n        text-decoration: none;\n        color: #4a4848;\n}\n.active[data-v-263e9da2]{\n        background: #e6e6e6;\n        border-left: 5px solid #5eff5e;\n}\n.active a[data-v-263e9da2]{\n        color: black;\n        font-weight: bold;\n}\n.chat-bar .avatar[data-v-263e9da2]{\n        display: flex;\n        align-items: center;\n}\n.chat-bar p[data-v-263e9da2]{\n}\n.chat-bar img[data-v-263e9da2]{\n        border: 1px solid #51ff55;\n        padding: 4px;\n        border-radius: 50px;\n}\n.name[data-v-263e9da2]{\n        width: -moz-max-content;\n        width: max-content;\n}\n.icon[data-v-263e9da2]{\n        float: right;\n        margin-top: -35px;\n}\n.seen[data-v-263e9da2]{\n        width: 20px;\n        border-radius: 50px;\n        border: 1px solid #dfdfdf;\n        padding: 2px;\n}\n.online[data-v-263e9da2]:after{\n        content: \"\";\n        width: 8px !important;\n        height: 8px;\n        background: #0a53be;\n        position: absolute;\n        border-radius: 50px;\n}\n.offline[data-v-263e9da2]:after{\n        content: \"\";\n        width: 8px !important;\n        height: 8px;\n        background: #be0a0a;\n        position: absolute;\n        border-radius: 50px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card-body-overflow[data-v-263e9da2]{\r\n        height: calc(100vh - 15rem);\r\n        overflow-y: scroll;\n}\n.chat-item img[data-v-263e9da2]{\r\n        width: 50px;\r\n        height:50px;\r\n        margin-right: 20px;\n}\n.chat-content[data-v-263e9da2]{\r\n        margin: 0;\r\n        background: #d7d7d79c;\r\n        border-radius: 27px;\r\n        padding: 11px 16px;\r\n        font-size: 12px;\r\n        /*max-width: 50%;*/\r\n        color: #282424;\n}\n.input-text[data-v-263e9da2]{\r\n        width: 100%;\r\n        border: none;\r\n        padding: 9px 18px;\r\n        border-radius: 50px;\r\n        font-size: 17px;\r\n        background: #d7d7d79c;\n}\n.footer-design[data-v-263e9da2]{\r\n        border-top: none;\r\n        background: transparent;\n}\n.footer-design .button[data-v-263e9da2]{\r\n        padding: 11px 13px;\r\n        border: none;\r\n        color: #a59e9e;\r\n        display: flex;\r\n        border-radius: 50%;\r\n        align-items: center;\r\n        justify-content: center;\r\n        margin-left: 10px;\r\n        background: transparent;\n}\n.footer-design .button[data-v-263e9da2]:hover{\r\n        background: #e7e7e7;\n}\n.footer-design .button svg[data-v-263e9da2]{\r\n        margin-left: -3px;\r\n        transform: rotate(45deg);\n}\n.nav li[data-v-263e9da2]{\r\n        padding: 10px;\r\n        cursor: pointer;\n}\n.nav li a[data-v-263e9da2]{\r\n        text-decoration: none;\r\n        color: #4a4848;\n}\n.active[data-v-263e9da2]{\r\n        background: #e6e6e6;\r\n        border-left: 5px solid #5eff5e;\n}\n.active a[data-v-263e9da2]{\r\n        color: black;\r\n        font-weight: bold;\n}\n.chat-bar .avatar[data-v-263e9da2]{\r\n        display: flex;\r\n        align-items: center;\n}\n.chat-bar p[data-v-263e9da2]{\n}\n.chat-bar img[data-v-263e9da2]{\r\n        border: 1px solid #51ff55;\r\n        padding: 4px;\r\n        border-radius: 50px;\n}\n.name[data-v-263e9da2]{\r\n        width: -moz-max-content;\r\n        width: max-content;\n}\n.icon[data-v-263e9da2]{\r\n        float: right;\r\n        margin-top: -35px;\n}\n.seen[data-v-263e9da2]{\r\n        width: 20px;\r\n        border-radius: 50px;\r\n        border: 1px solid #dfdfdf;\r\n        padding: 2px;\n}\n.online[data-v-263e9da2]:after{\r\n        content: \"\";\r\n        width: 8px !important;\r\n        height: 8px;\r\n        background: #0a53be;\r\n        position: absolute;\r\n        border-radius: 50px;\n}\n.offline[data-v-263e9da2]:after{\r\n        content: \"\";\r\n        width: 8px !important;\r\n        height: 8px;\r\n        background: #be0a0a;\r\n        position: absolute;\r\n        border-radius: 50px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -56524,13 +56524,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Task_vue_vue_type_template_id_2c9826ba__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Task.vue?vue&type=template&id=2c9826ba */ "./resources/js/Task.vue?vue&type=template&id=2c9826ba");
 /* harmony import */ var _Task_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task.vue?vue&type=script&lang=js */ "./resources/js/Task.vue?vue&type=script&lang=js");
-/* harmony import */ var G_practice_laravel_vue_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var G_laravel_inirshia_js_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,G_practice_laravel_vue_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Task_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Task_vue_vue_type_template_id_2c9826ba__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Task.vue"]])
+const __exports__ = /*#__PURE__*/(0,G_laravel_inirshia_js_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Task_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Task_vue_vue_type_template_id_2c9826ba__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Task.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -56553,7 +56553,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Main_vue_vue_type_template_id_263e9da2_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Main.vue?vue&type=template&id=263e9da2&scoped=true */ "./resources/js/chat/Main.vue?vue&type=template&id=263e9da2&scoped=true");
 /* harmony import */ var _Main_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Main.vue?vue&type=script&setup=true&lang=js */ "./resources/js/chat/Main.vue?vue&type=script&setup=true&lang=js");
 /* harmony import */ var _Main_vue_vue_type_style_index_0_id_263e9da2_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Main.vue?vue&type=style&index=0&id=263e9da2&scoped=true&lang=css */ "./resources/js/chat/Main.vue?vue&type=style&index=0&id=263e9da2&scoped=true&lang=css");
-/* harmony import */ var G_practice_laravel_vue_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var G_laravel_inirshia_js_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -56561,7 +56561,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,G_practice_laravel_vue_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Main_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Main_vue_vue_type_template_id_263e9da2_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-263e9da2"],['__file',"resources/js/chat/Main.vue"]])
+const __exports__ = /*#__PURE__*/(0,G_laravel_inirshia_js_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Main_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Main_vue_vue_type_template_id_263e9da2_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-263e9da2"],['__file',"resources/js/chat/Main.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -56583,13 +56583,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e");
 /* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js");
-/* harmony import */ var G_practice_laravel_vue_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var G_laravel_inirshia_js_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,G_practice_laravel_vue_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ExampleComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ExampleComponent_vue_vue_type_template_id_299e239e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ExampleComponent.vue"]])
+const __exports__ = /*#__PURE__*/(0,G_laravel_inirshia_js_digging_deeper_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ExampleComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ExampleComponent_vue_vue_type_template_id_299e239e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ExampleComponent.vue"]])
 /* hot reload */
 if (false) {}
 

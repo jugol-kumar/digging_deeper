@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Repositories\Repository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::preventLazyLoading(! $this->app->isProduction());
+//        User::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
+//        User::preventAccessingMissingAttributes(! $this->app->isProduction());
+
+
     }
 }

@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Events\UserRegistrationEvent;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @property mixed email
@@ -15,7 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +30,23 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        //'user_id', 'created_at', 'updated_at'
     ];
+//    protected $attributes = [
+//        'email_verified_at' => "12.12.12"
+//    ];
+
+
+//    protected $connection = 'sqlite';
+    public function newUniqueId()
+    {
+        return (string) Str::uuid();
+    }
+    public function uniqueIds()
+    {
+        return ['user_id'];
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
