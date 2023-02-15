@@ -4,9 +4,12 @@ use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\RedisController;
 use App\Http\Middleware\IsAdminMiddleware;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -197,3 +200,24 @@ Route::controller(RedisController::class)->group(function(){
 
 
 Route::get('/export-word-file', [\App\Http\Controllers\ExportWordFile::class, 'generateDocx']);
+
+
+// check model date time formatter
+
+Route::get('/users/all', function (){
+//    return \App\Models\User::find(11);
+    return \App\Models\User::orderBy('id', 'desc')->get();
+});
+
+Route::get('/user/w', function (){
+    $user = new \App\Models\User();
+   \App\Models\User::withoutTimestamps(fn() => $user->create([
+       'user_id' => Str::uuid(),
+       'name'       => 'Admisn',
+       'email'      => Str::random()."adsmin@mail.com",
+       'password'   => Hash::make('12345678'),
+       'role_id'    => Role::where('slug', 'admin')->first()->id,
+       'created_at' => now(),
+       'updated_at' => now()
+   ]));
+});
