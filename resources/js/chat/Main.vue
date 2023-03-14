@@ -32,13 +32,17 @@
                             <img src="../../../public/sundor.jpg" alt="" class="rounded-circle">
                             <p class="chat-content">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p>
                         </div>
+
+
                     </div>
                     <div class="card-footer footer-design d-flex align-items-center">
-                        <input type="text" placeholder="Aa" class="input-text">
-                        <button class="button">
+                        <input type="text" placeholder="Aa" class="input-text" v-model="message" @keypress.enter="submit" @input="sound">
+                        <button class="button" @click="submit">
                             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                         </button>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -46,12 +50,53 @@
 </template>
 
 <script setup>
-import {defineProps} from "vue"
-let props = defineProps({
-    name:''
-})
+import {defineProps, ref, onMounted} from "vue"
+    let props = defineProps({
+        name:''
+    })
+
+
+    let message = ref('');
+
+    let submit = () =>{
+        if(message.value.length > 0){
+            axios.post('/chat/send', {data: {message:message.value, file:[], name:'jugol kumar', id:1, is_notify:true}}).then((res) =>{
+                message.value = ''
+                new Audio("./audio/message-1.mp3").play();
+
+                window.Echo.channel('chat').listen('ChatEvent', ({res})=>{
+                    // new Audio("./audio/message-1.mp3").play();
+                    console.log("call hrere");
+                    console.log(res)
+                })
+
+            }).catch((err) =>{
+                alert(err)
+            })
+        }
+    }
+
+    let sound = (e) =>{
+        if(e.target.value.length === 1){
+            new Audio("./audio/typing.mp3").play();
+        }
+    }
+
+    var pusher = new Pusher('c5bc4306fdf4745ed09d', {
+        cluster: 'mt1'
+    });
+
+    var channel = pusher.subscribe('chat');
+    channel.bind('ChatEvent', function(data) {
+        alert("ok")
+        console.log(data)
+    });
+
 
 </script>
+
+
+
 
 <style scoped>
     .card-body{

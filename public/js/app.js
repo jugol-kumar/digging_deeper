@@ -22998,7 +22998,7 @@ __webpack_require__.r(__webpack_exports__);
       return _this.tasks = response.data;
     });
     this.task_name = " ";
-    Echo.channel('tasks').listen('TaskEvent', function (_ref) {
+    Echo.channel('tasks').listen('App\\Events\\TaskEvent', function (_ref) {
       var task = _ref.task;
       _this.tasks.push({
         'task_name': task.task_name
@@ -23032,7 +23032,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'Main',
   props: {
@@ -23042,13 +23044,83 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
     var expose = _ref.expose;
     expose();
     var props = __props;
+    var message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+    var submit = function submit() {
+      if (message.value.length > 0) {
+        axios.post('/chat/send', {
+          data: {
+            message: message.value,
+            file: [],
+            name: 'jugol kumar',
+            id: 1,
+            is_notify: true
+          }
+        }).then(function (res) {
+          message.value = '';
+          new Audio("./audio/message-1.mp3").play();
+          window.Echo.channel('chat').listen('ChatEvent', function (_ref2) {
+            var res = _ref2.res;
+            // new Audio("./audio/message-1.mp3").play();
+            console.log("call hrere");
+            console.log(res);
+          });
+        })["catch"](function (err) {
+          alert(err);
+        });
+      }
+    };
+    var sound = function sound(e) {
+      if (e.target.value.length === 1) {
+        new Audio("./audio/typing.mp3").play();
+      }
+    };
+    var pusher = new Pusher('c5bc4306fdf4745ed09d', {
+      cluster: 'mt1'
+    });
+    var channel = pusher.subscribe('chat');
+    channel.bind('ChatEvent', function (data) {
+      alert("ok");
+      console.log(data);
+    });
     var __returned__ = {
       get props() {
         return props;
       },
       set props(v) {
         v, _readOnlyError("props");
-      }
+      },
+      get message() {
+        return message;
+      },
+      set message(v) {
+        message = v;
+      },
+      get submit() {
+        return submit;
+      },
+      set submit(v) {
+        submit = v;
+      },
+      get sound() {
+        return sound;
+      },
+      set sound(v) {
+        sound = v;
+      },
+      get pusher() {
+        return pusher;
+      },
+      set pusher(v) {
+        pusher = v;
+      },
+      get channel() {
+        return channel;
+      },
+      set channel(v) {
+        channel = v;
+      },
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23167,9 +23239,51 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "card-header"
 };
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card-body\" data-v-263e9da2><div class=\"d-flex chat-item align-items-center mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><div class=\"d-flex flex-column\" data-v-263e9da2><p class=\"chat-content mb-2\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet.</p></div></div><div class=\"d-flex chat-item align-items-center flex-row-reverse mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p></div><div class=\"d-flex chat-item align-items-center mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><div class=\"d-flex flex-column\" data-v-263e9da2><p class=\"chat-content mb-2\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet.</p></div></div><div class=\"d-flex chat-item align-items-center flex-row-reverse mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p></div></div><div class=\"card-footer footer-design d-flex align-items-center\" data-v-263e9da2><input type=\"text\" placeholder=\"Aa\" class=\"input-text\" data-v-263e9da2><button class=\"button\" data-v-263e9da2><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"css-i6dzq1\" data-v-263e9da2><line x1=\"22\" y1=\"2\" x2=\"11\" y2=\"13\" data-v-263e9da2></line><polygon points=\"22 2 15 22 11 13 2 9 22 2\" data-v-263e9da2></polygon></svg></button></div>", 2);
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card-body\" data-v-263e9da2><div class=\"d-flex chat-item align-items-center mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><div class=\"d-flex flex-column\" data-v-263e9da2><p class=\"chat-content mb-2\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet.</p></div></div><div class=\"d-flex chat-item align-items-center flex-row-reverse mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p></div><div class=\"d-flex chat-item align-items-center mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><div class=\"d-flex flex-column\" data-v-263e9da2><p class=\"chat-content mb-2\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet.</p></div></div><div class=\"d-flex chat-item align-items-center flex-row-reverse mb-2\" data-v-263e9da2><img src=\"" + _public_sundor_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"rounded-circle\" data-v-263e9da2><p class=\"chat-content\" data-v-263e9da2>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem optio perspiciatis sed tenetur. Architecto consectetur ex id incidunt minima molestias natus ratione. Deleniti eos, eveniet harum ipsa quis quisquam reprehenderit.</p></div></div>", 1);
+var _hoisted_7 = {
+  "class": "card-footer footer-design d-flex align-items-center"
+};
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+    viewBox: "0 0 24 24",
+    width: "24",
+    height: "24",
+    stroke: "currentColor",
+    "stroke-width": "2",
+    fill: "none",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "class": "css-i6dzq1"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("line", {
+    x1: "22",
+    y1: "2",
+    x2: "11",
+    y2: "13"
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("polygon", {
+    points: "22 2 15 22 11 13 2 9 22 2"
+  })], -1 /* HOISTED */);
+});
+var _hoisted_9 = [_hoisted_8];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Hello Mr " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name), 1 /* TEXT */)]), _hoisted_6])])])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Hello Mr " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name), 1 /* TEXT */)]), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    placeholder: "Aa",
+    "class": "input-text",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.message = $event;
+    }),
+    onKeypress: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
+      return $setup.submit && $setup.submit.apply($setup, arguments);
+    }, ["enter"])),
+    onInput: _cache[2] || (_cache[2] = function () {
+      return $setup.sound && $setup.sound.apply($setup, arguments);
+    })
+  }, null, 544 /* HYDRATE_EVENTS, NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.message]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "button",
+    onClick: _cache[3] || (_cache[3] = function () {
+      return $setup.submit && $setup.submit.apply($setup, arguments);
+    })
+  }, _hoisted_9)])])])])]);
 }
 
 /***/ }),

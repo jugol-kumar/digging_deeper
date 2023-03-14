@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
             @if(Session::has('message'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ Session::get('message') }}
@@ -78,12 +77,55 @@
                             </div>
                         </div>
 
-                            <div class="tab-pane fade active show" id="allpost" role="tabpanel" aria-labelledby="allpost-tab">
+                        <div class="tab-pane fade active show" id="allpost" role="tabpanel" aria-labelledby="allpost-tab">
 
-                            </div>
+                        </div>
+                </div>
                 </div>
             </div>
         </div>
+
+
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Add Multiple Comment's In Post</h2>
+
+                        <form class="p-5" method="post" action="{{ route('post.addComment') }}">
+                            @csrf
+
+                            <div class="form-group">
+                                <select name="post_id" class="form-control">
+                                    @foreach($posts as $post) {{-- just here lodel before created posts --}}
+                                        <option value="{{ $post->id }}">{{ $post->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="comments[]" placeholder="comments">
+                                <input class="form-control" type="text" name="comments[]" placeholder="comments">
+                                <input class="form-control" type="text" name="comments[]" placeholder="comments">
+                                <input class="form-control" type="text" name="comments[]" placeholder="comments">
+                                <input class="form-control" type="text" name="comments[]" placeholder="comments">
+                            </div> {{-- here just create some fields as array for added multiple comments at a time.  --}}
+
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="status" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Publication status</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save comment's</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\PostSaved;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\User;
@@ -152,6 +153,68 @@ class PostController extends Controller
 
         }
     }
+
+
+    public function saveComments(Request $request){
+        // return here request just for see
+        // now i will try to save multiple comment's . so now we can see the laravel docs.
+        // now create comment model and migrations.
+        // now make migration file.
+        // now try to create multiple comment's under a post.
+        // before create relations between post and comment's
+
+
+        // this method only save single item.
+
+
+
+        // EXPLANATIONS
+        // actually here save and saveMany method received Eloquent Model Instance and save this instance data.
+        // and create and createMany method received only row php array and save the data.
+        // create and save method using for save single data.
+        // and alternatively saveMany and createMany using for save multiple data.
+        // i think i can explained properly.
+
+        $comments = [];
+        foreach ($request->comments as $comment) {
+            $comments[] = ['message' => $comment];
+        }
+
+//        return $comments;
+
+//        $comments = new Comment(['message' => "this is my comment", 'message' => "my comment tow"]);
+//        $post = Post::findOrFail($request->input('post_id'));
+//        $post->comments()->save($comments);
+
+
+
+        // need to saveMany method for save multiple items at a time.
+
+
+//        $comments[] = new Comment(['message' => "this is my comment", 'message' => "my comment tow"]);
+
+        $post = Post::findOrFail($request->input('post_id'));
+//        $post->comments()->createMany([
+//            new Comment(['message' => "this is my comment"]),
+//            new Comment(['message' => "my comment tow"])
+//        ]);
+
+
+
+        $post = Post::findOrFail($request->input('post_id'));
+
+        $post->comments()->createMany($comments);
+
+        return $comments;
+
+
+
+
+
+
+
+    }
+
 
 
 }

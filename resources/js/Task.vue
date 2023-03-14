@@ -27,10 +27,8 @@
         },
         created() {
             axios.get('/api/tasks').then(response =>(this.tasks = response.data))
-
             this.task_name =  " "
-
-            Echo.channel('tasks').listen('TaskEvent', ({task}) => {
+            Echo.channel('tasks').listen('App\\Events\\TaskEvent', ({task}) => {
                 this.tasks.push({'task_name': task.task_name})
             });
 
@@ -42,7 +40,11 @@
             addTask(){
                 axios.post('/tasks-create', {task_name:this.task_name})
             }
-        }
+        },
+
+
 
     }
+
+
 </script>

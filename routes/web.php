@@ -33,6 +33,8 @@ Route::get('/user/profile', [\App\Http\Controllers\PostController::class, 'index
 
 Route::post('/save-post',[\App\Http\Controllers\HomeController::class,'savePost'])->name('storepost');
 
+Route::post('save-comment/single-post', [\App\Http\Controllers\PostController::class, 'saveComments'])->name('post.addComment');
+
 //Route::post('/save-user-post', [])->name('user.post');
 
 Route::resource('post', \App\Http\Controllers\PostController::class);
@@ -159,7 +161,6 @@ Route::get('/vue-chat', function (){
 Route::get('/brotcasting', function (){
     return view('VuejsApp');
 })->name('brotcasting');
-
 
 
 
