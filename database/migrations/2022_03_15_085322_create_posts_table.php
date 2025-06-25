@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('category_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->text('image')->default('default.png');
+//            $table->text('image')->default('default.png');
             $table->tinyInteger('status')->default(0);
             $table->softDeletes();
             $table->timestamps();

@@ -7,6 +7,7 @@ use App\Http\Middleware\IsAdminMiddleware;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -23,6 +24,14 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
+
+//    Cache::put('new feature', "this is new feature");
+    Cache::put('new feature1', "this is new feature2");
+    Cache::put('new feature2', "this is new feature3");
+    Cache::put('new feature3', "this is new feature4");
+
+    Cache::pull('new feature');
+
     return view('welcome');
 });
 
